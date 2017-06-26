@@ -185,7 +185,6 @@ for i in data_list:
 f.close()
 f_out.close()
 ```
-```
 
 Et là, magie, le fichier de sortie contient:
 
