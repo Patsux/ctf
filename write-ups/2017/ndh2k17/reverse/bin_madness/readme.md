@@ -204,7 +204,6 @@ ag : ndh2k17_624f4a5789ce1298f469ce&#210;&#210;&#210
 Et vlà notre flag : **ndh2k17_624f4a5789ce1298f469ce**
 
 Bon, des heures pour une simple inversion de bits, c'est un peu con. Pourquoi
-je n'ai pas pensé à le faire plus tôt...Du coup, le nom de la catégorie prend
-tout son sens.
+je n'y ai pas pensé plus tôt ! Le nom de la catégorie prend tout son sens.
 
 
