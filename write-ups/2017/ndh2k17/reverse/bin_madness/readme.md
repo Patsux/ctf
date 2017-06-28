@@ -2,7 +2,8 @@
 
 ## Description
 
-Le challenge contenait un fichier texte appelé « bin_madness » avec ceci:
+Le challenge contenait un fichier texte appelé « bin_madness » avec du
+code binaire:
 
 ```
 10111010100111101000110010000110110111111000100010011110100011001001000111011000
@@ -67,10 +68,8 @@ You'd better to start to move your feet To the rockin'est, rock-steady beat Of M
 ## Parti à la recherche d'un binaire imaginaire
 
 Poussé par la catégorie « reverse » du challenge, je me suis dit que le fichier
-texte était peut-être le code binaire d'un programme. Je me suis donc lancé dans
-l'idée de le convertir en fichier binaire pour identifier de quoi il s'agissait.
-Pour cela, j'ai écrit un petit script python pour pouvoir ensuite m'amuser facilement
-avec les données:
+texte était peut-être le code binaire d'un programme. À l'aide d'un script python,
+j'ai converti le format ascii du code en fichier binaire:
 
 ```python
 import struct
@@ -104,7 +103,8 @@ En quelques mots, ce script supprime le formatage sur 80 colonnes du
 texte (suppression des "\n") et forme les octets en hexa au format texte pour
 déboguer rapidement. Enfin, il ouvre un fichier binaire et pack les octets
 pour les écrire. Bon, même si j'ai un peu nettoyé le code, il reste moche et
-non optimisé, mais au moins il fonctionne...
+non optimisé, mais au moins il fonctionne. L'avantage du script maison, c'est
+de pouvoir manipuler les données par la suite.
 
 ```
 00000000   BA 9E 8C 86  DF 88 9E 8C  91 D8 8B DF  96 8B DF C0  DF B1 90 88  DF 9D 8D 96  ........................
@@ -132,18 +132,19 @@ non optimisé, mais au moins il fonctionne...
 00000210
 ```
 
-Sans gros mystère, ce n'est pas un ELF ni du x86. Il n'y a pas de magic particulier,
+Sans gros mystère, ce n'est pas un ELF ni du code x86. Il n'y a pas de magic particulier,
 ni de chaîne visible. Par contre, je suis surpris par la redondance des valeurs et les
 MSB à 1. 
 
 Je me suis attardé un peu sur l'indice du challenge. Une rapide recherche permet
-d'identifier la musique à laquelle elle fait référence https://www.youtube.com/watch?v=SPlQpGeTbIE.
+d'identifier la musique à laquelle elle fait référence
+https://www.youtube.com/watch?v=SPlQpGeTbIE.
 
 La redondance des valeurs exprime bien le style répété de la musique et le fait
 de devoir commencer par bouger ses pieds suppose que nous devons faire quelque
 chose sur les bits. On perçoit aussi que le flag est probablement au début, car
 les valeurs diffèrent ensuite. Je ne vais pas cacher que j'ai longuement tourné
-en rond, tout en étant persuadé que cela devait être simple (que 100 points).
+en rond, tout en étant persuadé que cela devait être simple (challenge à 100 points).
 J'ai commencé à changer les MSB, mais rien de concret et pas de code à reverser
 connu.
 
@@ -152,8 +153,8 @@ connu.
 Après plusieurs heures sans savoir quoi faire, j'abandonne pour un autre chall
 de reverse. Au détour d'une discussion d'apparence sans intérêt avec mon voisin
 à propos de la musique, j'ai en tête l'idée simple d'inverser les bits comme
-si l'on changeait de pied sur une danse. Comme toujours, je fais au plus simple
-et relance mon script python. 
+si l'on changeait de pied sur une danse. Je modifie rapidement le script pour
+ajouter l'étape d'inversion :
 
 ```python
 import struct
@@ -168,7 +169,7 @@ f = open(sys.argv[1], 'r')
 # Replace the '\n' to remove 80-chars columns
 data = f.read().replace("\n", "")
 
-# Reverse bit 
+# [NEW] Reverse bit 
 data = data.replace("1", "2").replace("0", "1").replace("2", "0")
 
 data_str = ""
@@ -203,7 +204,7 @@ ag : ndh2k17_624f4a5789ce1298f469ce&#210;&#210;&#210
 
 Et vlà notre flag : **ndh2k17_624f4a5789ce1298f469ce**
 
-Bon, des heures pour une simple inversion de bits, c'est un peu con. Pourquoi
-je n'y ai pas pensé plus tôt ! Le nom de la catégorie prend tout son sens.
+Bon, des heures pour une simple inversion de bits, c'est un peu con. 
+Mais le nom de la catégorie prend tout son sens...
 
 
