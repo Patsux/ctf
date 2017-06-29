@@ -65,7 +65,7 @@ pratique pour identifier les limites d'une fonction.
 
 Je me mets à la recherche de la routine qui récupère l'appuie des touches.
 Je trouve des bouts de code où il est question du joystick. En fouillant la
-doc de la gameboyje tombe sur une info importante ici
+doc de la gameboy, je tombe sur une info importante ici
 http://www.emulatronia.com/doctec/consolas/gameboy/gameboy.txt :
 
 ```
@@ -122,9 +122,8 @@ l'écriture de la valeur 0xD. Je me retrouve dans ce bout de code:
 
 Le code est assez simple. Il extrait la touche appuyée du registre et pour le
 mettre dans le registre **a**. Le problème est que lorsque le break se déclenche,
-je lâche la touche et n'arrive pas à lire la valeur de la touche. Je mets
-un point d'arrêt à la sortie de la boucle et enlève mon point d'arrêt
-conditionnel.
+je lâche la touche et n'arrive pas à lire sa valeur. Je mets un point d'arrêt à
+la sortie de la boucle et enlève mon point d'arrêt conditionnel.
 
 # Que fait-il du password entré ?
 
