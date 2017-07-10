@@ -120,7 +120,7 @@ l'écriture de la valeur 0xD. Je me retrouve dans ce bout de code:
 
 ![](img/wargames-screen-io-break.png "Break sur lecture des i/o")
 
-Le code est assez simple. Il extrait la touche appuyée du registre et pour le
+Le code est assez simple. Il extrait la touche appuyée du registre pour la
 mettre dans le registre **a**. Le problème est que lorsque le break se déclenche,
 je lâche la touche et n'arrive pas à lire sa valeur. Je mets un point d'arrêt à
 la sortie de la boucle et enlève mon point d'arrêt conditionnel.
@@ -143,8 +143,12 @@ dans le tableau montre qu'il contient le password tapé.
 
 ![](img/wargames-screen-password.png "Stockage du password en 0xCAA0")
 
-0x62 = 'a' en ascii, ce qui correspond au bouton A de la gameboy. Quand j'appuie
-sur 's', il stocke en réalite la valeur du bouton B en ascii (0x62 = 'b').
+0x62 = 'b' en ascii. Quand j'appuie sur 's', il stocke 0x61 = 'a'.
+C'est un peu bizarre comme mapping, car ma touche de clavier 'a' stocke 'b'.
+Je ne sais pas si c'est l'émulateur qui a un mapping bizarre ou si c'est le
+programme qui inverse les touches en stockant 'a' sur l'appuie de la touche B
+de la console et 'b' sur l'appuie de la touche A. Ce n'est franchement pas
+très grave, car la seule chose importante est ce qui est stocké dans le tableau.
 
 # Reverse du password
 
