@@ -142,7 +142,7 @@ Ce **pop rpb** est nécessaire pour passer à l'élément suivant et ainsi récu
 
 Pour qu'IDA soit content, on patch le **pop rbx** par un NOP. On obtient la version décompilé:
 
-![](img/cls-function-sub-874.png "Function sub-874"")
+![](img/cls-function-sub-874.png "Function sub-874")
 
 La fonction inverse les caractères par rapport au milieu. Le premier devient le dernier, le dernier le premier, le second devient l'avant-dernier, l'avant-dernier le second, etc.
 
@@ -158,7 +158,7 @@ Ces fonctions sont facilement réversibles. La fonction **sub_A21()** appelle la
 
 Cette fonction appelle **sub_94B()** qui est la fonction la plus intéressante:
 
-![](img/cls-verify-hardcoded-flag.png "Function sub-874"")
+![](img/cls-verify-hardcoded-flag.png "Function sub-874")
 
 Elle vérifie que les caractères du password modifié sont égales aux valeurs attendues en utilisant une soustraction. On détermine aussi la taille du flag, puisqu'il s'arrête soit à la fin du flag entré (s'il est trop court) ou lorsque la valeur attendue vaut 0 (fin du flag).
 
