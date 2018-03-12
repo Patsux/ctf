@@ -89,7 +89,7 @@ La fonction n'appelle rien, mais utilise le pointeur reçu comme référence pou
 
 Le schéma suivant montre la stack depuis la fonction **sub761()** avec ses deux paramètres copiés: le pointeur de référence et l'addresse du NOP. Si l'on regarde le code décompilé, on voit que les offsets utilisés pointent sur l'adresse de retour et la sauvegarde du **rbp** de la fonction **sub_AC8()**. Ces deux valeurs sont modifiées afin que l'adresse de retour soit égale à l'adresse du NOP et que le précédent **rbp** soit au début du tableau.
 
-![](img/cls-stack.png "Stack et code qui modifie les adresses de retour")
+![](img/cls-stack-761.png "Stack et code qui modifie les adresses de retour")
 
 Ci-dessous le contenu de la stack avant et après l'éxécution de la fonction (**0x7fffffffdc30** contient l'adresse du NOP). On distingue clairement le pointeur de réfèrence en **0x00007fffffffdc50** et le changement en **0x7fffffffdc60** qui contient, après éxécution, l'adresse du tableau **0x00007fffffffdc70**, suivie de l'adresse du NOP **0x000055555555475e**.
 
